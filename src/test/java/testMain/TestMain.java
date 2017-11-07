@@ -41,7 +41,7 @@ public class TestMain {
 	@Test
 	public void queryUserAll() {
 		List<User> selectList = myBatisDao.selectList("UserMapper.queryUserAll");
-		
+		//
 		System.out.println(selectList);
 	
 	}
