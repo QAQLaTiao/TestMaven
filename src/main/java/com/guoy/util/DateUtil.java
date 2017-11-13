@@ -40,7 +40,41 @@ public class DateUtil {
     private static final char[] zeroArray =
         "0000000000000000000000000000000000000000000000000000000000000000".toCharArray();
 
-    
+
+
+    /**
+     * 得到年月日
+     */
+    public static String getYMD(Date date) {
+        SimpleDateFormat df = new SimpleDateFormat("yyyy-MM-dd");
+
+        String date_1 = df.format(date);
+
+        return date_1;
+    }
+
+    /**
+     * 得到时分秒
+     */
+    public static String getHMS(Date date) {
+        SimpleDateFormat df = new SimpleDateFormat("HH:mm:ss");
+        String date_2 = df.format(date);
+        return date_2;
+    }
+
+    /**
+     * 获取指定时间的字符串，
+     */
+    public static String getDateTime(long time) {
+        Date date = new Date(time);
+        if (date != null && !"".equals(date)) {
+            return sdf2.format(date);
+        } else {
+            return "";
+        }
+    }
+
+
     public static Date format(HttpServletRequest request,String oldString)
 	{
 		String para = null;
