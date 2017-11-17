@@ -1,14 +1,24 @@
 package testMain;
 
-public class TestMainF {
-	
-	public static void main(String[] args) {
-		
+import com.guoy.util.DocPersonMap;
 
-		
-		String[]s= {"1a","2s","3d","4f","5g","6h","7j","8k","9l","10z"};
-		
-		String[]one;
-		
-	}
+import java.util.HashMap;
+
+public class TestMainF {
+
+    public static void main(String[] args) {
+        int n = 20;
+        int a = 1;
+        int h = 0;
+        int b = 2;
+
+        double sum = 0;
+        for (int i = 0; i < n; i++) {
+            sum = sum + b / a;
+            b = a + b;
+            h = a;
+            a = a + h;
+        }
+
+    }
 }

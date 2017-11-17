@@ -19,30 +19,25 @@ import com.sun.tools.internal.xjc.reader.xmlschema.bindinfo.BIConversion.User;
 @RunWith(SpringJUnit4ClassRunner.class)
 @ContextConfiguration("classpath:applicationContext.xml")
 public class TestMain {
-	
-	
-	@Resource
-	MyBatisDao myBatisDao;
-	
-	
-	public static void main(String[] args) {
-		HashMap<String,Object>map = new HashMap<String,Object>();
-		
-		System.out.println(UUID.randomUUID().toString().replaceAll("-",""));
-		
-		//map.put("seqNo", GenerateSequenceUtil.generate19SequenceNoLong());
-		
-		//System.out.println(JSONObject.toJSONString(map));
-		
-		//System.out.println(GenerateSequenceUtil.generate19SequenceNoLong());
-	}
-	
-	
-	@Test
-	public void queryUserAll() {
-		List<User> selectList = myBatisDao.selectList("UserMapper.queryUserAll");
-		//
-		System.out.println(selectList);
-	
-	}
+
+
+    @Resource
+    MyBatisDao myBatisDao;
+
+
+    public static void main(String[] args) {
+        String a = "aaaa";
+        String[] split = a.split(",");
+        System.out.println(split);
+
+    }
+
+
+    @Test
+    public void queryUserAll() {
+        List<User> selectList = myBatisDao.selectList("UserMapper.queryUserAll");
+        //
+        System.out.println(selectList);
+
+    }
 }
