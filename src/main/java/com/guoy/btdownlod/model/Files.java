@@ -2,6 +2,9 @@ package com.guoy.btdownlod.model;
 
 import java.util.List;
 
+/**
+ * @author GUOYE
+ */
 public class Files {
     private long length;
     private String md5sum;

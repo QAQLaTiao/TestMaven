@@ -6,6 +6,9 @@ import org.springframework.web.bind.annotation.RequestMapping;
 
 import com.guoy.service.MainService;
 
+/**
+ * @author GUOYE
+ */
 @Controller
 @RequestMapping("/")
 public class MainController {

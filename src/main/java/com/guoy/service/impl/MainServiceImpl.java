@@ -8,6 +8,9 @@ import com.guoy.model.Video;
 import com.guoy.service.MainService;
 
 
+/**
+ * @author GUOYE
+ */
 @Service
 public class MainServiceImpl implements MainService{
 

@@ -6,6 +6,9 @@ import java.util.Arrays;
 import java.util.List;
 
 
+/**
+ * @author GUOYE
+ */
 public class BitTorrentInfo {
     public static List<String> keyList;
 
@@ -50,7 +53,7 @@ public class BitTorrentInfo {
         return announce;
     }
 
-    public void setAnnounce(String announce) {
+    private void setAnnounce(String announce) {
         this.announce = announce;
     }
 
@@ -153,6 +156,8 @@ public class BitTorrentInfo {
                     List<Files> filesList3 = this.getInfo().getFiles();
                     Files files3 = filesList3.get(filesList3.size() - 1);
                     files3.getPath().add(value.toString());
+                    break;
+                default:
                     break;
             }
         }
