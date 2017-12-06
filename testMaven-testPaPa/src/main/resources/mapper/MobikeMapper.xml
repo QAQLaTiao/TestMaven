@@ -1,0 +1,138 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" 
+    "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="MobikeMapper">
+
+	<!--实体映射-->
+	<resultMap id="MobikeResMap" type="com.guoy.model.Mobike">
+		<!---->
+		<id property="orderid" column="orderid" />
+		<!---->
+		<result property="userid" column="userid" />
+		<!---->
+		<result property="bikeid" column="bikeid" />
+		<!---->
+		<result property="starttime" column="starttime" />
+		<!---->
+		<result property="startLon" column="start_lon" />
+		<!---->
+		<result property="startLat" column="start_lat" />
+		<!---->
+		<result property="endLon" column="end_lon" />
+		<!---->
+		<result property="endLat" column="end_lat" />
+	</resultMap>
+
+
+	<!-- 通用查询结果列-->
+	<sql id="Base_Column_List">
+		 orderid,	userid,	bikeid,	starttime,	start_lon,	start_lat,	end_lon,	end_lat
+	</sql>
+
+	<select id="selectAll" resultType="com.guoy.model.Mobike" parameterType="java.lang.String">
+		 SELECT
+		 <include refid="Base_Column_List" />
+		 FROM mobike
+	</select>
+	<!-- 查询（根据主键ID查询） -->
+	<select id="selectByPrimaryKey" resultType="com.guoy.model.Mobike" parameterType="java.lang.String">
+		 SELECT
+		 <include refid="Base_Column_List" />
+		 FROM mobike
+		 WHERE orderid = #{orderid}
+	</select>
+
+	<!--删除：根据主键ID删除-->
+	<delete id="deleteByPrimaryKey" parameterType="java.lang.String">
+		 DELETE FROM mobike
+		 WHERE orderid = #{orderid}
+	</delete>
+
+	<!-- 添加 （匹配有值的字段）-->
+	<insert id="insertSelective" parameterType="com.guoy.model.Mobike">
+		 INSERT INTO mobike
+		 <trim prefix="(" suffix=")" suffixOverrides="," >
+			<if test="orderid != null">
+				 orderid,
+			</if>
+			<if test="userid != null">
+				 userid,
+			</if>
+			<if test="bikeid != null">
+				 bikeid,
+			</if>
+			<if test="starttime != null">
+				 starttime,
+			</if>
+			<if test="startLon != null">
+				 start_lon,
+			</if>
+			<if test="startLat != null">
+				 start_lat,
+			</if>
+			<if test="endLon != null">
+				 end_lon,
+			</if>
+			<if test="endLat != null">
+				 end_lat,
+			</if>
+
+		 </trim>
+		 <trim prefix="values (" suffix=")" suffixOverrides="," >
+			<if test="orderid!=null">
+				 #{orderid},
+			</if>
+			<if test="userid!=null">
+				 #{userid},
+			</if>
+			<if test="bikeid!=null">
+				 #{bikeid},
+			</if>
+			<if test="starttime!=null">
+				 #{starttime},
+			</if>
+			<if test="startLon!=null">
+				 #{startLon},
+			</if>
+			<if test="startLat!=null">
+				 #{startLat},
+			</if>
+			<if test="endLon!=null">
+				 #{endLon},
+			</if>
+			<if test="endLat!=null">
+				 #{endLat},
+			</if>
+		 </trim>
+	</insert>
+
+	<!-- 修 改-->
+	<update id="updateByPrimaryKeySelective" parameterType="com.guoy.model.Mobike">
+		 UPDATE mobike
+ 		 <set> 
+			<if test="userid != null">
+				 userid = #{userid},
+			</if>
+			<if test="bikeid != null">
+				 bikeid = #{bikeid},
+			</if>
+			<if test="starttime != null">
+				 starttime = #{starttime},
+			</if>
+			<if test="startLon != null">
+				 start_lon = #{startLon},
+			</if>
+			<if test="startLat != null">
+				 start_lat = #{startLat},
+			</if>
+			<if test="endLon != null">
+				 end_lon = #{endLon},
+			</if>
+			<if test="endLat != null">
+				 end_lat = #{endLat},
+			</if>
+
+ 		 </set>
+		 WHERE orderid = #{orderid}
+	</update>
+</mapper>

@@ -5,6 +5,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 import com.guoy.service.MainService;
+import org.springframework.web.bind.annotation.ResponseBody;
 
 /**
  * @author GUOYE
@@ -13,13 +14,14 @@ import com.guoy.service.MainService;
 @RequestMapping("/")
 public class MainController {
 
-	@Autowired
-	private MainService mainServiceImpl;
+    @Autowired
+    private MainService mainServiceImpl;
 
-	
-	@RequestMapping("/")
-	public String login(){
-		System.out.println("============登录==========");
-		return "/user/login";
-	}
+    @ResponseBody
+    @RequestMapping("/nana")
+    public String login(String nana) {
+        System.out.println("============登录==========");
+        return "";
+
+    }
 }

@@ -26,9 +26,11 @@ public class TestMain {
 
 
     public static void main(String[] args) {
-        String a = "aaaa";
-        String[] split = a.split(",");
-        System.out.println(split);
+
+    String nana = "曹亚洁";
+        System.out.println(nana);
+
+
 
     }
 
