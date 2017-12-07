@@ -1,20 +1,14 @@
 package testMain;
 
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.LinkedList;
-import java.util.List;
-import java.util.UUID;
-
-import javax.annotation.Resource;
-
+import com.guoy.dao.MyBatisDao;
+import com.sun.tools.internal.xjc.reader.xmlschema.bindinfo.BIConversion.User;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 
-import com.guoy.dao.MyBatisDao;
-import com.sun.tools.internal.xjc.reader.xmlschema.bindinfo.BIConversion.User;
+import javax.annotation.Resource;
+import java.util.List;
 
 @RunWith(SpringJUnit4ClassRunner.class)
 @ContextConfiguration("classpath:applicationContext.xml")

@@ -1,4 +1,4 @@
-package com.guoy.model;
+package com.guoy.papa.service.model;
 
 public class Video {
 

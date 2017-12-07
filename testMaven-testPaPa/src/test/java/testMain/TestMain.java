@@ -1,27 +1,21 @@
 package testMain;
 
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.LinkedList;
-import java.util.List;
-import java.util.UUID;
-
-import javax.annotation.Resource;
-
+import com.guoy.dao.MyBatisDao;
+import com.guoy.model.User;
 import org.junit.Test;
 import org.junit.runner.RunWith;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 
-import com.guoy.dao.MyBatisDao;
-import com.sun.tools.internal.xjc.reader.xmlschema.bindinfo.BIConversion.User;
+import java.util.List;
 
 @RunWith(SpringJUnit4ClassRunner.class)
 @ContextConfiguration("classpath:applicationContext.xml")
 public class TestMain {
 
 
-    @Resource
+    @Autowired
     MyBatisDao myBatisDao;
 
 
@@ -39,7 +33,8 @@ public class TestMain {
     public void queryUserAll() {
         List<User> selectList = myBatisDao.selectList("UserMapper.queryUserAll");
         //
-        System.out.println(selectList);
-
+        for(User u : selectList) {
+            System.out.println(u);
+        }
     }
 }

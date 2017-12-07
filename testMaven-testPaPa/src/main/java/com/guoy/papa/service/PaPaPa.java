@@ -1,16 +1,16 @@
 package com.guoy.papa.service;
 
-import java.util.List;
-
 import javax.annotation.Resource;
 
+import com.guoy.papa.service.model.Video;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 
 import com.guoy.dao.MyBatisDao;
-import com.guoy.model.Video;
+
+import java.util.List;
 
 
 @RunWith(SpringJUnit4ClassRunner.class)
@@ -28,7 +28,7 @@ public class PaPaPa {
 		for(int ii = 1 ; ii <57 ; ii++) {
 			System.out.println("第"+ii+"页");
 			
-			List<Video> list; 
+			List<Video> list;
 			try {
 			list = new GPPMain().papaMain(ii);
 			}catch(Exception e){

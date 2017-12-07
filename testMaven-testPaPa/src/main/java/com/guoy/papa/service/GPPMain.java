@@ -1,11 +1,11 @@
 package com.guoy.papa.service;
 
+import com.guoy.papa.service.model.Video;
+import com.guoy.util.ConnectionUtil;
+
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
-
-import com.guoy.model.Video;
-import com.guoy.util.ConnectionUtil;
 
 public class GPPMain {
 	private String urlFir = "http://retysd.com";
@@ -65,7 +65,7 @@ public class GPPMain {
 		
 		String string = split[1];
 		
-		String[] split1 = string.split("a title='第1集' href=\\\"");
+		String[] split1 = string.split("a title='第1集' href=\"");
 		
 		String string2 = split1[1];
 		
@@ -80,7 +80,7 @@ public class GPPMain {
 		
 		String result = ConnectionUtil.Connect(url);
 		System.out.println("3层");
-		String[] split = result.split("video src=\\\"");
+		String[] split = result.split("video src=\"");
 		
 		String string = split[1];
 		
