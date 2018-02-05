@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="textMapper">
+	<!--user表表映射文件-->
+	<resultMap id="textResMap" type="com.guoy.model.Text">
+		<id property="id" column="id" />
+		<result property="title" column="title" />
+		<result property="text" column="text"/>
+		<result property="textClass" column="textClass"/>
+	</resultMap>
+	
+	
+	<!-- 通用查询结果列-->
+	<sql id="Base_Column_List">
+		id,title,text,textClass
+	</sql>
+
+	<select id="selectText" resultMap="textResMap">
+		SELECT
+		<include refid="Base_Column_List" />
+		FROM t_text
+	</select>
+
+	<insert id="insert" parameterType="com.guoy.model.Text">
+		 INSERT INTO t_text
+		(title,text,textClass)
+		 values (#{title},#{text},#{textClass})
+	</insert>
+	<update id="update" parameterType="com.guoy.model.Text">
+		UPDATE t_text
+		<set>
+			<if test="title != null"> title = #{title},</if>
+			<if test="text != null"> text = #{text},</if>
+		</set>
+		WHERE id = #{id}
+	</update>
+	<insert id="insertText" parameterType="com.guoy.model.Text">
+		 INSERT INTO t_text
+		 <trim prefix="(" suffix=")" suffixOverrides="," >
+			<if test="title != null">title,</if>
+			<if test="text != null">text,</if>
+			<if test="textClass != null">textClass,</if>
+		 </trim>
+		 <trim prefix="values (" suffix=")" suffixOverrides="," >
+			<if test="title !=null">#{title},</if>
+			<if test="text !=null">#{text},</if>
+			<if test="textClass !=null">#{textClass},</if>
+		 </trim>
+	</insert>
+
+</mapper>

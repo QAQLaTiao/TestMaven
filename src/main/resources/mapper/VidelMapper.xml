@@ -5,39 +5,45 @@
 	<resultMap id="videoResMap" type="com.guoy.model.Video">
 		<id property="id" column="id" />
 		<result property="title" column="title" />
-		<result property="videoName" column="videoName"/>
+		<result property="videoClass" column="videoClass"/>
 		<result property="videoPicture" column="videoPicture"/>
 		<result property="videoUrl" column="videoUrl"/>
-		<result property="aaa" column="aaa"/>
-		<result property="bbb" column="bbb"/>
 	</resultMap>
 	
 	
 	<!-- 通用查询结果列-->
 	<sql id="Base_Column_List">
-		id,title,videoName,videoPicture,videoUrl,aaa,bbb
+		id,title,videoClass,videoPicture,videoUrl
 	</sql>
+
+	<select id="selectVideo" resultMap="videoResMap">
+		SELECT
+		<include refid="Base_Column_List" />
+		FROM t_video
+	</select>
+
+	<insert id="insert" parameterType="com.guoy.model.Video">
+		 INSERT INTO t_video
+		(title,videoClass,videoPicture,videoUrl)
+		 values (#{title},#{videoClass},#{videoPicture},#{videoUrl})
+	</insert>
 
 	<insert id="insertVideo" parameterType="com.guoy.model.Video">
 		 INSERT INTO t_video
 		 <trim prefix="(" suffix=")" suffixOverrides="," >
 			<if test="id != null">id,</if>
 			<if test="title != null">title,</if>
-			<if test="videoName != null">videoName,</if>
+			<if test="videoClass != null">videoClass,</if>
 			<if test="videoPicture != null">videoPicture,</if>
 			<if test="videoUrl != null">videoUrl,</if>
-			<if test="aaa != null">aaa,</if>
-			<if test="bbb != null">bbb,</if>
 		 </trim>
 		 <trim prefix="values (" suffix=")" suffixOverrides="," >
 			<if test="id !=null">#{id},</if>
 			<if test="title !=null">#{title},</if>
-			<if test="videoName !=null">#{videoName},</if>
+			<if test="videoClass !=null">#{videoClass},</if>
 			<if test="videoPicture !=null">#{videoPicture},</if>
 			<if test="videoUrl !=null">#{videoUrl},</if>
-			<if test="aaa !=null">#{aaa},</if>
-			<if test="bbb !=null">#{bbb},</if>
 		 </trim>
 	</insert>
-	
+
 </mapper>

@@ -1,93 +1,118 @@
 package com.guoy.papaService;
 
+import com.guoy.model.Video;
+import com.guoy.util.ConnectionUtil;
+
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
-import com.guoy.model.Video;
-import com.guoy.util.ConnectionUtil;
-
 public class GPPMain {
-	private String urlFir = "http://retysd.com";
+    private String urlFir = "https://www.797cf.com";
 
-	public List<Video> papaMain(int page) {
-		String address = "http://retysd.com/video-list-id-28-page-"+page+".html";
-		
-		String result = ConnectionUtil.Connect(address);
-		System.out.println("1层");
-		
-		String[] split = result.split("<li>");
-		
-		List<String> list = Arrays.asList(split);
-		
-		List<String> list1 = new ArrayList<String>(list);;
-		
-		for(int i=0;i<3;i++) {
-			list1.remove(0);
-		}
-		
-		list1.remove(list1.size()-1);
-		
-//		System.out.println(JSON.toJSONString(list1));
-		
-		List<Video> videoList = new ArrayList<Video>();
+    public List<Video> papaMain(int count,int page,String videlClass) {
+        String address = "https://www.797cf.com/htm/downlist"+count+"/" + page + ".htm";
 
-		for(String s : list1) {
-			Video video = new Video();
-			String[] split2 = s.split("\"");
-			String url2;
-			List<String> list3 = Arrays.asList(split2);
-			try {
-			String url1 = fenli1(urlFir+list3.get(1));
-			video.setBbb(url1);
-			url2 = fenli2(url1);
-			}catch(Exception e){
-				continue;
-			}
-			
-			video.setVideoUrl(url2);
-			video.setVideoPicture(urlFir+list3.get(7));
-			video.setTitle(list3.get(9));
-			video.setAaa(urlFir+list3.get(13));
-			video.setVideoName(list3.get(14));
-			videoList.add(video);
-		}
-		
-		return videoList;
-	}
-	
-	public String fenli1(String url) {
-		
-		String result = ConnectionUtil.Connect(url);
-		System.out.println("2层");
-		
-		String[] split = result.split("HTML5");
-		
-		String string = split[1];
-		
-		String[] split1 = string.split("a title='第1集' href=\\\"");
-		
-		String string2 = split1[1];
-		
-		String[] split3 = string2.split("\"");
-		
-		url = urlFir+split3[0];
-		
-		return url;
-	}
-	
-	public String fenli2(String url) {
-		
-		String result = ConnectionUtil.Connect(url);
-		System.out.println("3层");
-		String[] split = result.split("video src=\\\"");
-		
-		String string = split[1];
-		
-		String[] split1 = string.split("\"");
-		
-		url = split1[0];
-		
-		return url;
-	}
+
+        String result = null;
+        try {
+            result = ConnectionUtil.Connect(address, "utf-8");
+        } catch (Exception e) {
+            System.out.println("1c error");
+            try {
+                result = ConnectionUtil.Connect(address, "utf-8");
+            } catch (Exception e1) {
+                result = ConnectionUtil.Connect(address, "utf-8");
+            }
+        }
+        System.out.println("1层");
+
+        String[] split = result.split("<li><a href=\"");
+
+        List<String> list = Arrays.asList(split);
+
+        List<String> list1 = new ArrayList<String>(list);
+        ;
+
+        list1.remove(0);
+
+        List<Video> videoList = new ArrayList<Video>();
+        int cc = 0;
+        for (String s : list1) {
+            cc++;
+            Video video = new Video();
+
+            String[] split1 = s.split("\" target=\"_blank\"><img src=\"");
+
+            String url2 = split1[0];
+
+
+            String[] split2 = split1[1].split("\" /><h3>");
+
+            String picture = split2[0];
+
+            String[] split3 = split2[1].split("</h3>");
+
+            String title = split3[0];
+            try {
+                url2 = fenli2(urlFir + url2,cc);
+            } catch (Exception e) {
+                continue;
+            }
+
+
+            video.setVideoUrl(url2);
+            video.setVideoPicture(picture);
+            video.setTitle(title);
+            video.setVideoClass(videlClass);
+            videoList.add(video);
+        }
+
+        return videoList;
+    }
+
+    private String fenli2(String url,int cc) {
+
+        String result = null;
+        try {
+            result = ConnectionUtil.Connect(url, "utf-8");
+        } catch (Exception e) {
+            System.out.println("3c error");
+            try {
+                result = ConnectionUtil.Connect(url, "utf-8");
+            } catch (Exception e1) {
+                result = ConnectionUtil.Connect(url, "utf-8");
+            }
+        }
+        System.out.println("3层"+cc);
+        String[] split = result.split("generate_down[(]");
+
+        String split1 = split[1];
+
+        String[] split2 = split1.split(" [+] \"");
+
+        String switchS = split2[0];
+        String[] split3 = split2[1].split("\"[)];");
+        String realUrl = split3[0];
+
+        String movieUrl = "http://down.maomixia.com:888";
+        switch (switchS) {
+            case "downurl_10_2":
+                realUrl = movieUrl + realUrl;
+                break;
+            case "downurl_24k_2":
+                realUrl = movieUrl + realUrl;
+                break;
+            case "downurl_new_2":
+                realUrl = movieUrl + realUrl;
+                break;
+            case "downurl_69_2":
+                realUrl = movieUrl + realUrl;
+                break;
+            default:
+                realUrl = url;
+                break;
+        }
+        return realUrl;
+    }
 }
