@@ -4,9 +4,11 @@ package testMain;
 import org.python.core.*;
 import org.python.util.PythonInterpreter;
 
+import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
 import java.io.LineNumberReader;
+import java.nio.charset.Charset;
 
 public class TestPy {
     /*
@@ -25,20 +27,22 @@ public class TestPy {
         }
     }*/
     public static void main(String[] args) {
-        // TODO Auto-generated method stub
         try {
             //执行py文件
-            args = new String[] { "python E:\\classify\\inference.py", "尿频,尿频"};
-            Process proc=Runtime.getRuntime().exec(args);
-            InputStreamReader stdin=new InputStreamReader(proc.getInputStream());
-            LineNumberReader input=new LineNumberReader(stdin);
+            //args = new String[]{"python","D:\\classify\\inference.py"};
+            args = new String[]{"python", "D:\\classify\\inference.py", "尿频,尿频","D:"};
+
+            Process proc = Runtime.getRuntime().exec(args);
+            InputStreamReader stdin = new InputStreamReader(proc.getInputStream(), Charset.forName("UTF-8"));
+            LineNumberReader input = new LineNumberReader(stdin);
+
+            BufferedReader in = new BufferedReader(new InputStreamReader(proc.getInputStream()));
             String line;
-            while((line=input.readLine())!=null ){
-                //得到输出
+
+            while ((line = in.readLine()) != null) {
                 System.out.println(line);
             }
         } catch (IOException e) {
-            // TODO Auto-generated catch block
             e.printStackTrace();
         }
     }

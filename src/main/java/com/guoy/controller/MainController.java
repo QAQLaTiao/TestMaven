@@ -10,7 +10,7 @@ import com.guoy.service.MainService;
 import javax.annotation.Resource;
 
 @Controller
-@RequestMapping("/")
+@RequestMapping
 public class MainController {
 
     @Autowired
@@ -24,7 +24,7 @@ public class MainController {
         return "";
     }
 
-    @RequestMapping("/")
+    @RequestMapping("/index")
     public String logi1n() {
         System.out.println("============登录2==========");
         return "/index";
