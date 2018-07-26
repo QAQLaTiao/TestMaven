@@ -21,6 +21,9 @@ public class MainController {
 
     @RequestMapping("/aaa")
     public String login() {
+        //ArrayList<RegisterModel> registerModel = JSONObject.parseObject(data, new TypeReference<ArrayList<RegisterModel>>() {
+        //});
+
         return "";
     }
 
